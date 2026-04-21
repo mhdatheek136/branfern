@@ -1,0 +1,15 @@
+@import "../src/index.css";
+@import "../src/styles/globals.css";
+@import "../src/App.css";
+@import "../src/components/Navbar.css";
+@import "../src/components/HamburgerMenu.css";
+@import "../src/components/DesignCategories.css";
+@import "../src/components/Hero.css";
+@import "../src/components/ScrollIndicator.css";
+@import "../src/components/RecentProjects.css";
+@import "../src/components/Footer.css";
+@import "../src/views/AboutUs.css";
+@import "../src/views/BrandReview.css";
+@import "../src/views/ContactUs.css";
+@import "../src/views/ProjectCaseStudy.css";
+@import "../src/views/Work.css";

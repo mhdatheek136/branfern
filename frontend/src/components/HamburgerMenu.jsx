@@ -1,58 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { X, Instagram, Music, MessageCircle, Linkedin } from 'lucide-react';
-import { getSocialLinks, getSiteSettings } from '../lib/sanity';
-import './HamburgerMenu.css';
+'use client';
 
-// Default navigation links (static - not fetched from Sanity)
+import React from 'react';
+import Link from 'next/link';
+import { X, Instagram, Music, MessageCircle, Linkedin } from 'lucide-react';
+
 const navigationLinks = [
   { label: 'Work', path: '/work' },
   { label: 'Brand Review', path: '/brand-review' },
   { label: 'About Us', path: '/about' },
-  { label: 'Contact Us', path: '/contact' }
+  { label: 'Contact Us', path: '/contact' },
 ];
 
-// Icon mapping for social platforms
 const getIconComponent = (platform) => {
   const icons = {
-    'Instagram': Instagram,
-    'TikTok': Music,
-    'WhatsApp': MessageCircle,
-    'LinkedIn': Linkedin,
+    Instagram,
+    TikTok: Music,
+    WhatsApp: MessageCircle,
+    LinkedIn: Linkedin,
   };
+
   return icons[platform] || Instagram;
 };
 
-const HamburgerMenu = ({ isOpen, onClose }) => {
-  const navigate = useNavigate();
-  const [socialLinks, setSocialLinks] = useState([]);
-  const [settings, setSettings] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const [socialsData, settingsData] = await Promise.all([
-          getSocialLinks(),
-          getSiteSettings()
-        ]);
-
-        if (socialsData) setSocialLinks(socialsData);
-        if (settingsData) setSettings(settingsData);
-      } catch (error) {
-        console.error('Error fetching menu data:', error);
-      }
-    }
-    if (isOpen) {
-      fetchData();
-    }
-  }, [isOpen]);
-
-  if (!isOpen) return null;
-
-  const handleNavClick = (path) => {
-    navigate(path);
-    onClose();
-  };
+const HamburgerMenu = ({ isOpen, onClose, socialLinks = [], settings = null }) => {
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <div className="hamburger-menu-overlay">
@@ -63,14 +36,15 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
       <div className="menu-content">
         <div className="menu-left">
           <nav className="menu-nav">
-            {navigationLinks.map((link, index) => (
-              <button
-                key={index}
+            {navigationLinks.map((link) => (
+              <Link
+                key={link.path}
+                href={link.path}
                 className="menu-nav-item"
-                onClick={() => handleNavClick(link.path)}
+                onClick={onClose}
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
           </nav>
         </div>
@@ -96,7 +70,6 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
                   );
                 })
               ) : (
-                // Fallback social links
                 <>
                   <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="menu-social-item">
                     <Instagram size={18} />
@@ -121,8 +94,8 @@ const HamburgerMenu = ({ isOpen, onClose }) => {
 
           <div className="menu-section">
             <h3 className="menu-section-title">Email</h3>
-            <a href={`mailto:${settings?.email || 'branfern@gmail.com'}`} className="menu-contact-item">
-              {settings?.email || 'branfern@gmail.com'}
+            <a href={`mailto:${settings?.email || 'hello@branfern.com'}`} className="menu-contact-item">
+              {settings?.email || 'hello@branfern.com'}
             </a>
           </div>
 

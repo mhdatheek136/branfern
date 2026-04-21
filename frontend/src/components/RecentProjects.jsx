@@ -1,58 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { getRecentProjects, urlFor } from '../lib/sanity';
-import './RecentProjects.css';
+import React from 'react';
+import Link from 'next/link';
+import { urlFor } from '../lib/content';
 
-const RecentProjects = () => {
-  const navigate = useNavigate();
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchProjects() {
-      try {
-        const data = await getRecentProjects(6);
-        if (data) {
-          setProjects(data);
-        }
-      } catch (error) {
-        console.error('Error fetching recent projects:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchProjects();
-  }, []);
-
-  const handleProjectClick = (slug) => {
-    navigate(`/work/${slug}`);
-  };
-
+const RecentProjects = ({ projects = [] }) => {
   const getImageUrl = (image) => {
-    if (!image) return null;
+    if (!image) {
+      return null;
+    }
+
     return urlFor(image).width(800).height(600).fit('crop').url();
   };
-
-  if (loading) {
-    return (
-      <section id="recent-projects" className="recent-projects-section">
-        <div className="container">
-          <h2 className="section-title">RECENT PROJECTS</h2>
-          <div className="projects-grid">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="project-card loading-skeleton">
-                <div className="project-image-wrapper skeleton"></div>
-                <div className="project-info">
-                  <div className="skeleton-text"></div>
-                  <div className="skeleton-text small"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   if (!projects.length) {
     return (
@@ -71,10 +28,10 @@ const RecentProjects = () => {
         <h2 className="section-title">RECENT PROJECTS</h2>
         <div className="projects-grid">
           {projects.map((project) => (
-            <div
+            <Link
               key={project._id}
+              href={`/work/${project.slug}`}
               className="project-card"
-              onClick={() => handleProjectClick(project.slug)}
             >
               <div className="project-image-wrapper">
                 {project.mainImage && (
@@ -96,7 +53,7 @@ const RecentProjects = () => {
                 <h3 className="project-name">{project.name}</h3>
                 <p className="project-category">{project.category}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

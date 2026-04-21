@@ -1,6 +1,7 @@
+'use client';
+
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
-import './ScrollIndicator.css';
 
 const ScrollIndicator = () => {
   const scrollToProjects = () => {

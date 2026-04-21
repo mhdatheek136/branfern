@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <rect width="1600" height="900" fill="#111827"/>
+  <rect x="80" y="80" width="1440" height="740" rx="40" fill="#172554"/>
+  <circle cx="1220" cy="260" r="220" fill="#F59E0B" fill-opacity="0.9"/>
+  <circle cx="420" cy="700" r="260" fill="#0EA5E9" fill-opacity="0.75"/>
+  <rect x="280" y="220" width="420" height="280" rx="28" fill="#F8F3EC"/>
+  <path d="M800 220h290v290H800z" fill="#111827"/>
+  <path d="M840 260h210v210H840z" fill="#F8F3EC"/>
+  <text x="290" y="640" fill="#F8F3EC" font-family="Arial, sans-serif" font-size="78" font-weight="700">BRANFERN</text>
+  <text x="292" y="704" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="28" letter-spacing="6">LOCAL CONTENT DEMO</text>
+</svg>

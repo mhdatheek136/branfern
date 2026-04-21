@@ -1,49 +1,30 @@
-import React, { useState, useEffect } from 'react';
+'use client';
+
+import React, { useState } from 'react';
+import Link from 'next/link';
 import { Instagram, Music, MessageCircle, Linkedin, ArrowUp, X, ChevronUp } from 'lucide-react';
-import { getDesignCategories, getRecentProjects, getSocialLinks, getSiteSettings, urlFor } from '../lib/sanity';
-import './Footer.css';
+import { urlFor } from '../lib/content';
 
-
-// Icon mapping for social platforms
 const getIconComponent = (iconName) => {
   const icons = {
-    'Instagram': Instagram,
-    'Music': Music,
-    'MessageCircle': MessageCircle,
-    'Linkedin': Linkedin
+    Instagram,
+    Music,
+    MessageCircle,
+    Linkedin,
   };
+
   return icons[iconName] || Instagram;
 };
 
-const Footer = ({ showDockedRectangle = false }) => {
+const Footer = ({
+  showDockedRectangle = false,
+  settings = null,
+  socialLinks = [],
+  designCategories = [],
+  projects = [],
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState(null);
-  const [designCategories, setDesignCategories] = useState([]);
-  const [projects, setProjects] = useState([]);
-  const [socialLinks, setSocialLinks] = useState([]);
-  const [settings, setSettings] = useState(null);
-
-  // Fetch data from Sanity
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const [categoriesData, projectsData, socialsData, settingsData] = await Promise.all([
-          getDesignCategories(),
-          getRecentProjects(6),
-          getSocialLinks(),
-          getSiteSettings()
-        ]);
-
-        if (categoriesData) setDesignCategories(categoriesData.map(c => c.name));
-        if (projectsData) setProjects(projectsData);
-        if (socialsData) setSocialLinks(socialsData);
-        if (settingsData) setSettings(settingsData);
-      } catch (error) {
-        console.error('Error fetching footer data:', error);
-      }
-    }
-    fetchData();
-  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -51,7 +32,7 @@ const Footer = ({ showDockedRectangle = false }) => {
 
   const handleRectangleClick = () => {
     if (showDockedRectangle) {
-      setIsExpanded(!isExpanded);
+      setIsExpanded((current) => !current);
     }
   };
 
@@ -61,40 +42,40 @@ const Footer = ({ showDockedRectangle = false }) => {
   };
 
   const getProjectForCategory = (category) => {
-    const matchingProject = projects.find(p =>
-      p.tags?.some(tag => tag.toLowerCase().includes(category.toLowerCase()))
+    const matchingProject = projects.find((project) =>
+      project.tags?.some((tag) => tag.toLowerCase().includes(category.toLowerCase())),
     );
+
     return matchingProject || projects[0];
   };
 
   const getImageUrl = (image) => {
-    if (!image) return null;
+    if (!image) {
+      return null;
+    }
+
     return urlFor(image).width(400).height(300).fit('crop').url();
   };
 
   return (
     <>
-      {/* Expanded Overlay from Footer */}
       {isExpanded && (
         <div className="design-categories-overlay" onClick={handleClose}>
-          <div
-            className="categories-panel-new"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="categories-panel-new" onClick={(event) => event.stopPropagation()}>
             <button className="close-btn-new" onClick={handleClose}>
               <X size={20} />
             </button>
 
             <div className="expanded-title">
               <span>{settings?.footerOverlayTitle || 'We Design'}</span>
-              <span className="bullet">•</span>
+              <span className="bullet">&bull;</span>
               <span>{settings?.footerOverlaySubtitle || 'Everything'}</span>
             </div>
 
             <div className="categories-grid">
               {designCategories.map((category, index) => (
                 <button
-                  key={index}
+                  key={`${category}-${index}`}
                   className={`category-btn ${hoveredCategory === category ? 'active' : ''}`}
                   onMouseEnter={() => setHoveredCategory(category)}
                   onMouseLeave={() => setHoveredCategory(null)}
@@ -129,10 +110,8 @@ const Footer = ({ showDockedRectangle = false }) => {
       )}
 
       <footer className="footer">
-        {/* Main Footer Block */}
         <div className="footer-main">
           <div className="footer-container">
-            {/* Left Column - Oversized Brand Mark */}
             <div className="footer-col footer-col-left">
               <div className="footer-brand-mark">
                 <svg viewBox="0 0 400 400" fill="none" className="brand-mark-svg">
@@ -143,18 +122,14 @@ const Footer = ({ showDockedRectangle = false }) => {
               </div>
             </div>
 
-            {/* Vertical Divider 1 */}
             <div className="footer-divider-vertical"></div>
 
-            {/* Middle Column - Branfern Wordmark */}
             <div className="footer-col footer-col-middle">
               <h2 className="footer-wordmark">{settings?.companyName || 'Branfern'}</h2>
             </div>
 
-            {/* Vertical Divider 2 */}
             <div className="footer-divider-vertical"></div>
 
-            {/* Right Column - Contact Info */}
             <div className="footer-col footer-col-right">
               <div className="footer-contact-section">
                 <h3 className="footer-contact-heading">{settings?.footerWorkingHeading || 'Get in Touch'}</h3>
@@ -178,8 +153,8 @@ const Footer = ({ showDockedRectangle = false }) => {
 
               <div className="footer-contact-section">
                 <h3 className="footer-contact-heading">{settings?.footerContactsHeading || 'Contact Us'}</h3>
-                <a href={`mailto:${settings?.email || 'branfern@gmail.com'}`} className="footer-contact-link">
-                  {settings?.email || 'branfern@gmail.com'}
+                <a href={`mailto:${settings?.email || 'hello@branfern.com'}`} className="footer-contact-link">
+                  {settings?.email || 'hello@branfern.com'}
                 </a>
               </div>
 
@@ -191,19 +166,15 @@ const Footer = ({ showDockedRectangle = false }) => {
           </div>
         </div>
 
-        {/* Horizontal Divider */}
         <div className="footer-divider-horizontal"></div>
 
-
-        {/* Bottom Navigation Strip */}
         <div className="footer-bottom">
           <div className="footer-bottom-container">
-            {/* Zone A - Docking Area */}
             <div className="footer-dock-zone">
               {showDockedRectangle ? (
                 <div className="footer-docked-rectangle" onClick={handleRectangleClick}>
                   <span>{settings?.footerOverlayTitle || 'We Design'}</span>
-                  <span className="bullet">•</span>
+                  <span className="bullet">&bull;</span>
                   <span>{settings?.footerOverlaySubtitle || 'Everything'}</span>
                   <ChevronUp className="arrow-icon-footer" size={20} />
                 </div>
@@ -212,16 +183,14 @@ const Footer = ({ showDockedRectangle = false }) => {
               )}
             </div>
 
-            {/* Zone B - Navigation Links */}
             <nav className="footer-nav">
-              <a href="/" className="footer-nav-link">{settings?.navHomeLabel || 'HOME'}</a>
-              <a href="/brand-review" className="footer-nav-link">{settings?.navBrandReviewLabel || 'BRAND REVIEW'}</a>
-              <a href="/about" className="footer-nav-link">{settings?.navAboutLabel || 'ABOUT'}</a>
-              <a href="/work" className="footer-nav-link">{settings?.navWorkLabel || 'WORK'}</a>
-              <a href="/contact" className="footer-nav-link">{settings?.navContactLabel || 'CONTACT'}</a>
+              <Link href="/" className="footer-nav-link">{settings?.navHomeLabel || 'HOME'}</Link>
+              <Link href="/brand-review" className="footer-nav-link">{settings?.navBrandReviewLabel || 'BRAND REVIEW'}</Link>
+              <Link href="/about" className="footer-nav-link">{settings?.navAboutLabel || 'ABOUT'}</Link>
+              <Link href="/work" className="footer-nav-link">{settings?.navWorkLabel || 'WORK'}</Link>
+              <Link href="/contact" className="footer-nav-link">{settings?.navContactLabel || 'CONTACT'}</Link>
             </nav>
 
-            {/* Zone C - Scroll to Top */}
             <button className="footer-scroll-top" onClick={scrollToTop}>
               <ArrowUp size={20} />
               <span>{settings?.footerScrollTopText || 'Scroll Up'}</span>

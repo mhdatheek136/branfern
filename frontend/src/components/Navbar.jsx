@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu } from 'lucide-react';
-import './Navbar.css';
 
 const Navbar = ({ onMenuClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,23 +18,18 @@ const Navbar = ({ onMenuClick }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleLogoClick = () => {
-    navigate('/');
-    // Scroll to top of homepage
-    setTimeout(() => {
+  const handleLogoClick = (event) => {
+    if (pathname === '/') {
+      event.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 100);
-  };
-
-  const handleBrandReviewClick = () => {
-    navigate('/brand-review');
+    }
   };
 
   return (
     <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="navbar-content">
         <div className="navbar-left">
-          <div className="logo-container" onClick={handleLogoClick}>
+          <Link href="/" className="logo-container" onClick={handleLogoClick}>
             <div className="logo-icon">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
                 <rect x="8" y="12" width="16" height="12" fill="currentColor" />
@@ -41,12 +38,12 @@ const Navbar = ({ onMenuClick }) => {
               </svg>
             </div>
             <span className="logo-text">Branfern</span>
-          </div>
+          </Link>
         </div>
         <div className="navbar-right">
-          <button className="brand-review-btn" onClick={handleBrandReviewClick}>
+          <Link href="/brand-review" className="brand-review-btn">
             Brand Review
-          </button>
+          </Link>
           <button className="hamburger-btn" onClick={onMenuClick}>
             <Menu size={24} />
           </button>

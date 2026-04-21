@@ -1,93 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { getShowreelSlides, getSiteSettings, urlFor } from '../lib/sanity';
-import './Hero.css';
+'use client';
 
-// Fallback data for when Sanity data isn't loaded yet
+import React, { useEffect, useState } from 'react';
+import { urlFor } from '../lib/content';
+
 const fallbackSlides = [
-  { _id: '1', title: 'BRANFERN', subtitle: 'design studio', image: null }
+  {
+    _id: 'fallback-slide',
+    title: 'BRANFERN',
+    subtitle: 'Design systems for brands that need traction and clarity.',
+    image: null,
+  },
 ];
 
-const Hero = () => {
-  const [slides, setSlides] = useState(fallbackSlides);
+const Hero = ({ slides = fallbackSlides }) => {
+  const activeSlides = slides.length > 0 ? slides : fallbackSlides;
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [loading, setLoading] = useState(true);
 
-  // Fetch slides and settings from Sanity
   useEffect(() => {
-    async function fetchData() {
-      try {
-        console.log('[Hero] Fetching hero data...');
-        const [slidesData, settingsData] = await Promise.all([
-          getShowreelSlides(),
-          getSiteSettings()
-        ]);
-
-        console.log('[Hero] Slides data:', slidesData);
-        console.log('[Hero] Settings data:', settingsData);
-
-        let mergedSlides = [];
-
-        // 1. Try Showreel Slides first
-        if (slidesData && slidesData.length > 0) {
-          mergedSlides = slidesData;
-        }
-        // 2. Fallback to Site Settings Hero Images
-        else if (settingsData?.heroImages && settingsData.heroImages.length > 0) {
-          mergedSlides = settingsData.heroImages.map((img, index) => ({
-            _id: `hero-img-${index}`,
-            image: img,
-            title: settingsData.heroTitle || 'BRANFERN',
-            subtitle: settingsData.heroSubtitle || img.caption || 'design studio'
-          }));
-        }
-        // 3. Fallback to Site Settings Background Image (single slide)
-        else if (settingsData?.heroBackgroundImage) {
-          mergedSlides = [{
-            _id: 'hero-bg',
-            image: settingsData.heroBackgroundImage,
-            title: settingsData.heroTitle || 'BRANFERN',
-            subtitle: settingsData.heroSubtitle || 'design studio'
-          }];
-        }
-
-        // Only update if we found something
-        if (mergedSlides.length > 0) {
-          setSlides(mergedSlides);
-        } else {
-          // Keep fallback or set empty? Using fallbackSlides default.
-          console.warn('[Hero] No content found in Sanity, using fallback.');
-        }
-
-      } catch (error) {
-        console.error('Error fetching hero data:', error);
-      } finally {
-        setLoading(false);
-      }
+    if (activeSlides.length <= 1) {
+      return undefined;
     }
-    fetchData();
-  }, []);
-
-  // Auto-rotate slides
-  useEffect(() => {
-    if (slides.length <= 1) return;
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentSlide((prev) => (prev + 1) % activeSlides.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [slides.length]);
+  }, [activeSlides.length]);
 
-  // Get image URL from Sanity image object
   const getImageUrl = (image) => {
-    if (!image) return null;
+    if (!image) {
+      return null;
+    }
+
     return urlFor(image).width(1400).height(583).fit('crop').url();
   };
 
   return (
     <section className="hero-section">
       <div className="showreel-carousel">
-        {slides.map((slide, index) => (
+        {activeSlides.map((slide, index) => (
           <div
             key={slide._id || index}
             className={`carousel-slide ${index === currentSlide ? 'active' : ''}`}
@@ -109,7 +61,7 @@ const Hero = () => {
       </div>
 
       <div className="carousel-indicators">
-        {slides.map((_, index) => (
+        {activeSlides.map((_, index) => (
           <button
             key={index}
             className={`indicator ${index === currentSlide ? 'active' : ''}`}

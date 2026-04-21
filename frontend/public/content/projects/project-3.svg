@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" fill="none">
+  <rect width="1400" height="900" fill="#172554"/>
+  <rect x="120" y="120" width="1160" height="660" rx="40" fill="#0F172A"/>
+  <path d="M220 620c120-210 250-315 390-315 146 0 284 105 414 315" stroke="#F8F3EC" stroke-width="36" stroke-linecap="round"/>
+  <circle cx="1060" cy="330" r="120" fill="#F59E0B"/>
+  <rect x="240" y="220" width="240" height="180" rx="24" fill="#14B8A6"/>
+  <rect x="520" y="220" width="240" height="180" rx="24" fill="#2563EB"/>
+  <rect x="800" y="220" width="180" height="180" rx="24" fill="#F8F3EC"/>
+  <text x="220" y="760" fill="#F8F3EC" font-family="Arial, sans-serif" font-size="48" font-weight="700">PROJECT PLACEHOLDER 03</text>
+</svg>
