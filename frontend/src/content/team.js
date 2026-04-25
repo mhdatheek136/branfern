@@ -1,25 +1,17 @@
-const image = (src, alt) => ({ src, alt });
-
 export const teamMembers = [
   {
     _id: "team-1",
-    name: "Amani Fayad",
-    role: "Creative Director",
-    instagramUrl: "https://instagram.com/branfern",
-    image: image("/content/team/team-1.svg", "Amani Fayad portrait placeholder"),
+    name: "Abdullah Azmin",
+    role: "Co-Founder & Creative Designer",
   },
   {
     _id: "team-2",
-    name: "Rizwan Kareem",
-    role: "Brand Strategist",
-    instagramUrl: "https://instagram.com/branfern",
-    image: image("/content/team/team-2.svg", "Rizwan Kareem portrait placeholder"),
+    name: "Nuzky Naseem",
+    role: "Co-Founder & UX Designer",
   },
   {
     _id: "team-3",
-    name: "Mina Joseph",
-    role: "Digital Designer",
-    instagramUrl: "https://instagram.com/branfern",
-    image: image("/content/team/team-3.svg", "Mina Joseph portrait placeholder"),
+    name: "Aashik Nawas",
+    role: "Co-Founder & Marketing Head",
   },
 ];

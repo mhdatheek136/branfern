@@ -59,7 +59,7 @@ const SiteShell = ({
 
   return (
     <div className="App">
-      <Navbar onMenuClick={handleMenuToggle} />
+      <Navbar onMenuClick={handleMenuToggle} settings={settings} />
 
       {isHomePage && (
         <DesignCategories
@@ -74,7 +74,7 @@ const SiteShell = ({
       {children}
 
       <Footer
-        showDockedRectangle={!isHomePage || (isHomePage && scrollPosition > 1500)}
+        showDockedRectangle={!isHomePage || (isHomePage && scrollPosition > 960)}
         settings={settings}
         socialLinks={socialLinks}
         designCategories={designCategories}

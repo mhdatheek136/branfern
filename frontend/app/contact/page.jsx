@@ -1,6 +1,6 @@
 import ContactUs from '../../src/views/ContactUs';
 import { contactPage } from '../../src/content/pages';
-import { getPageContact, getSiteSettings, getSocialLinks } from '../../src/lib/content';
+import { getPageContact } from '../../src/lib/content';
 
 export const metadata = {
   title: contactPage.seoTitle,
@@ -8,17 +8,7 @@ export const metadata = {
 };
 
 export default async function ContactPage() {
-  const [pageData, settings, socialLinks] = await Promise.all([
-    getPageContact(),
-    getSiteSettings(),
-    getSocialLinks(),
-  ]);
+  const pageData = await getPageContact();
 
-  return (
-    <ContactUs
-      pageData={pageData}
-      settings={settings}
-      socialLinks={socialLinks}
-    />
-  );
+  return <ContactUs pageData={pageData} />;
 }

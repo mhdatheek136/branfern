@@ -1,78 +1,76 @@
-const image = (src, alt) => ({ src, alt });
-
 export const services = [
   {
-    _id: "service-1",
+    _id: "service-digital",
     pillarNumber: "01",
-    heading: "Strategy",
+    heading: "Digital",
     description:
-      "Positioning, audit work, naming, and brand architecture that gives your business a clearer direction.",
-    image: image("/content/projects/project-1.svg", "Strategy service artwork"),
+      "This pillar focuses on the brand's virtual touchpoints, using UI/UX systems, campaign assets, and content direction to make the brand feel intentional wherever it appears.",
+    accent: "truck-grey",
     cards: [
       {
-        title: "Brand Audits",
+        title: "Branding & Signage",
         description:
-          "We map what is working, what is unclear, and where your brand is leaking trust or momentum.",
+          "Designing professional exterior signage, wayfinding systems, and wall graphics that ensure visibility and brand recognition from high-traffic roads.",
       },
       {
-        title: "Positioning",
+        title: "Packaging & Product Design",
         description:
-          "We distill a sharper market angle and message system that your whole team can use.",
+          "Creating custom, high-impact packaging and labels that reflect the pedigree of the product.",
       },
       {
-        title: "Architecture",
+        title: "Physical Brand Collateral",
         description:
-          "We organize offerings, sub-brands, and touchpoints into a system that scales cleanly.",
+          "Designing high-quality printed menus, brochures, trifold cards, and corporate stationery.",
       },
     ],
   },
   {
-    _id: "service-2",
+    _id: "service-physical",
     pillarNumber: "02",
-    heading: "Identity",
+    heading: "Physical",
     description:
-      "Flexible visual systems with rules, assets, and applications that stay coherent as you grow.",
-    image: image("/content/projects/project-2.svg", "Identity service artwork"),
+      "This pillar transforms the real-world experience, ensuring the physical space reflects the brand's identity and provides the intended tranquil vibe.",
+    accent: "saddle-green",
     cards: [
       {
-        title: "Visual Language",
+        title: "Interior Design & Planning",
         description:
-          "Logos, typography, color, layout, and image direction built as a usable system.",
+          "Utilizing 3D visualization and architectural floor plans to optimize customer flow and aesthetic appeal.",
       },
       {
-        title: "Launch Assets",
+        title: "Branding & Signage",
         description:
-          "Campaign-ready rollouts for print, packaging, social, and internal adoption.",
+          "Designing professional exterior signage, wayfinding systems, and wall graphics that ensure visibility and brand recognition from high-traffic roads.",
       },
       {
-        title: "Brand Toolkits",
+        title: "Packaging & Product Design",
         description:
-          "Straightforward guidance your team can actually use without relying on a designer every day.",
+          "Creating custom, high-impact packaging and labels that reflect the pedigree of the product.",
       },
     ],
   },
   {
-    _id: "service-3",
+    _id: "service-human",
     pillarNumber: "03",
-    heading: "Presence",
+    heading: "Human",
     description:
-      "Digital touchpoints, content systems, and conversion paths that connect the brand to action.",
-    image: image("/content/projects/project-3.svg", "Presence service artwork"),
+      "This pillar leverages scientific rigor, process analysis, and training so the transformation remains sustainable across the people behind the brand.",
+    accent: "mane-orange",
     cards: [
       {
-        title: "Web Direction",
+        title: "Interior Design & Planning",
         description:
-          "Homepage narratives, offer structure, and page systems designed to convert more clearly.",
+          "Clarifying the customer experience and in-store journey so the service feels aligned with the brand promise.",
       },
       {
-        title: "Content Systems",
+        title: "Branding & Signage",
         description:
-          "Editorial patterns and reusable templates that keep publishing lightweight and consistent.",
+          "Equipping teams with visible cues, language, and systems that make the brand easier to maintain every day.",
       },
       {
-        title: "Social Rollout",
+        title: "Packaging & Product Design",
         description:
-          "Post templates, campaign hooks, and content rhythm that make your presence easier to maintain.",
+          "Turning brand rules into repeatable systems your team can produce, adapt, and scale without losing quality.",
       },
     ],
   },

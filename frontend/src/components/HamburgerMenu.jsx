@@ -4,13 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import { X, Instagram, Music, MessageCircle, Linkedin } from 'lucide-react';
 
-const navigationLinks = [
-  { label: 'Work', path: '/work' },
-  { label: 'Brand Review', path: '/brand-review' },
-  { label: 'About Us', path: '/about' },
-  { label: 'Contact Us', path: '/contact' },
-];
-
 const getIconComponent = (platform) => {
   const icons = {
     Instagram,
@@ -27,6 +20,14 @@ const HamburgerMenu = ({ isOpen, onClose, socialLinks = [], settings = null }) =
     return null;
   }
 
+  const navigationLinks = [
+    { label: settings?.navHomeLabel || 'HOME', path: '/' },
+    { label: settings?.navWorkLabel || 'WORK', path: '/work' },
+    { label: settings?.navAboutLabel || 'ABOUT', path: '/about' },
+    { label: settings?.navContactLabel || 'CONTACT', path: '/contact' },
+    { label: settings?.navBrandReviewLabel || 'BRAND REVIEW', path: '/brand-review' },
+  ];
+
   return (
     <div className="hamburger-menu-overlay">
       <button className="menu-close-btn" onClick={onClose}>
@@ -35,6 +36,16 @@ const HamburgerMenu = ({ isOpen, onClose, socialLinks = [], settings = null }) =
 
       <div className="menu-content">
         <div className="menu-left">
+          <div className="menu-brand-block">
+            <img
+              src="/content/paparhoof/branding/wordmark-horizontal-with-logo.svg"
+              alt={settings?.companyName || 'Paper Hoof'}
+              className="menu-brand-wordmark"
+            />
+            <p className="menu-brand-copy">
+              Paper Hoof builds identity systems, campaign visuals, and digital presence with editorial clarity.
+            </p>
+          </div>
           <nav className="menu-nav">
             {navigationLinks.map((link) => (
               <Link
@@ -69,26 +80,7 @@ const HamburgerMenu = ({ isOpen, onClose, socialLinks = [], settings = null }) =
                     </a>
                   );
                 })
-              ) : (
-                <>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="menu-social-item">
-                    <Instagram size={18} />
-                    <span>Instagram</span>
-                  </a>
-                  <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="menu-social-item">
-                    <Music size={18} />
-                    <span>TikTok</span>
-                  </a>
-                  <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" className="menu-social-item">
-                    <MessageCircle size={18} />
-                    <span>WhatsApp</span>
-                  </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="menu-social-item">
-                    <Linkedin size={18} />
-                    <span>LinkedIn</span>
-                  </a>
-                </>
-              )}
+              ) : null}
             </div>
           </div>
 

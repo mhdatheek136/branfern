@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { Calendar } from '../components/ui/calendar';
 import { createBooking } from '../lib/content';
 
@@ -81,8 +81,34 @@ const BrandReview = ({ pageData = {}, settings = null, formOptions = null }) => 
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const validateStep = (step) => {
+    const stepRequirements = {
+      1: ['service', 'budget', 'hearAbout', 'referrer'],
+      2: ['firstName', 'lastName', 'email', 'phone', 'company'],
+      3: ['date', 'timeSlot'],
+    };
+
+    const missingFields = (stepRequirements[step] || []).filter((field) => {
+      const value = formData[field];
+
+      if (value instanceof Date) {
+        return Number.isNaN(value.getTime());
+      }
+
+      return !String(value || '').trim();
+    });
+
+    if (missingFields.length > 0) {
+      setSubmitError('Please complete the required fields before continuing.');
+      return false;
+    }
+
+    setSubmitError(null);
+    return true;
+  };
+
   const handleNext = () => {
-    if (currentStep < 3) {
+    if (currentStep < 3 && validateStep(currentStep)) {
       setCurrentStep((prev) => prev + 1);
     }
   };
@@ -95,6 +121,11 @@ const BrandReview = ({ pageData = {}, settings = null, formOptions = null }) => 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!validateStep(3)) {
+      return;
+    }
+
     setSubmitting(true);
     setSubmitError(null);
 
@@ -120,6 +151,7 @@ const BrandReview = ({ pageData = {}, settings = null, formOptions = null }) => 
       <section className="brand-review-hero">
         <div className="hero-container">
           <div className="hero-left">
+            <span className="hero-eyebrow">{pageData.heroEyebrow || 'Strategic Session'}</span>
             <h1 className="hero-title">{pageData.heroTitle || 'Brand Review'}</h1>
             <p className="hero-description">{heroDescription}</p>
           </div>
@@ -136,11 +168,11 @@ const BrandReview = ({ pageData = {}, settings = null, formOptions = null }) => 
         <div className="form-container">
           {submitSuccess ? (
             <div className="success-message">
-              <div className="success-icon">OK</div>
+              <div className="success-icon">PH</div>
               <h2 className="success-title">{pageData.successTitle || 'Draft Ready'}</h2>
               <p className="success-description">
                 {pageData.successMessage ||
-                  'Your email app should open with a pre-filled Branfern enquiry draft. Send it when you are ready and we will follow up from there.'}
+                  'Your email app should open with a pre-filled Paper Hoof enquiry draft. Send it when you are ready and we will follow up from there.'}
               </p>
               <p className="success-details">
                 {formData.date &&
@@ -296,19 +328,13 @@ const BrandReview = ({ pageData = {}, settings = null, formOptions = null }) => 
                   <div className="form-step">
                     <div className="booking-section">
                       <div className="form-field">
-                        <label className="field-label-dropdown">
-                          {pageData.labelDate || 'Reserve a Date'}
-                          <ChevronRight size={16} className="dropdown-arrow" />
-                        </label>
-                        <div className="calendar-container">
+                      <label className="field-label-dropdown">
+                        {pageData.labelDate || 'Reserve a Date'}
+                        <ChevronRight size={16} className="dropdown-arrow" />
+                      </label>
+                      <div className="calendar-container">
                           <div className="calendar-header">
-                            <button type="button" className="calendar-nav-btn">
-                              <ChevronLeft size={20} />
-                            </button>
-                            <span className="calendar-month">Select a date</span>
-                            <button type="button" className="calendar-nav-btn">
-                              <ChevronRight size={20} />
-                            </button>
+                            <span className="calendar-month">Choose a date that works for you</span>
                           </div>
                           <Calendar
                             mode="single"

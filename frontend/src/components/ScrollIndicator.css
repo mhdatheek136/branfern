@@ -3,10 +3,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-3);
-  padding: var(--space-16) 0;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+  gap: 14px;
+  padding: 54px 0 74px;
+  text-align: center;
+  background: var(--surface-sheep-white);
+  transition: var(--transition-fast);
 }
 
 .scroll-indicator:hover {
@@ -14,34 +15,41 @@
 }
 
 .scroll-text {
-  font-family: var(--font-primary);
-  font-weight: 500;
-  font-size: 0.95rem;
-  color: var(--black);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: clamp(1.8rem, 2.6vw, 2.9rem);
+  letter-spacing: -0.05em;
+  color: var(--ink-horse-black);
 }
 
 .scroll-arrow {
-  color: var(--primary-green);
-  animation: bounce 2s ease-in-out infinite;
+  color: var(--surface-saddle-green);
+  animation: paperhoofBounce 1.8s ease-in-out infinite;
 }
 
-@keyframes bounce {
+.scroll-arrow svg {
+  width: 72px;
+  height: 72px;
+}
+
+@keyframes paperhoofBounce {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(8px);
+    transform: translateY(10px);
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .scroll-indicator {
-    padding: var(--space-12) 0;
+    padding: 34px 0 52px;
   }
 
   .scroll-text {
-    font-size: 0.875rem;
+    font-size: 1.35rem;
+  }
+
+  .scroll-arrow svg {
+    width: 56px;
+    height: 56px;
   }
 }

@@ -1,43 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
-import { urlFor } from '../lib/content';
 
 const AboutUs = ({ pageData = {}, teamMembers = [], services = [] }) => {
-  const [activeCarousel, setActiveCarousel] = useState(() =>
-    Object.fromEntries(services.map((_, index) => [index, 0])),
-  );
-
-  const handleCarouselNext = (pillarIndex, cardsLength) => {
-    setActiveCarousel((prev) => ({
-      ...prev,
-      [pillarIndex]: (prev[pillarIndex] + 1) % cardsLength,
-    }));
-  };
-
-  const handleCarouselPrev = (pillarIndex, cardsLength) => {
-    setActiveCarousel((prev) => ({
-      ...prev,
-      [pillarIndex]: (prev[pillarIndex] - 1 + cardsLength) % cardsLength,
-    }));
-  };
-
-  const getImageUrl = (image, width = 800, height = 600) => {
-    if (!image) {
-      return null;
-    }
-
-    return urlFor(image).width(width).height(height).fit('crop').url();
-  };
-
   return (
     <div className="about-us-page">
       <section className="about-hero">
         <div className="hero-container">
           <div className="hero-left">
-            <span className="hero-eyebrow">{pageData.heroEyebrow || 'About Branfern'}</span>
+            <span className="hero-eyebrow">{pageData.heroEyebrow || 'About Paper Hoof'}</span>
             <h1 className="hero-title">
               {pageData.heroTitle || 'We design the systems that power your brand.'}
             </h1>
@@ -53,11 +25,11 @@ const AboutUs = ({ pageData = {}, teamMembers = [], services = [] }) => {
       <section className="showreel-section">
         <div className="showreel-container">
           <div className="showreel-frame">
-            <div className="showreel-content">
-              <span className="showreel-placeholder">
-                {pageData.showreelPlaceholder || 'BRANFERN SHOWREEL'}
-              </span>
-            </div>
+            <img
+              src="/content/paparhoof/branding/emblem.svg"
+              alt="Paper Hoof emblem"
+              className="showreel-emblem"
+            />
           </div>
         </div>
       </section>
@@ -75,8 +47,8 @@ const AboutUs = ({ pageData = {}, teamMembers = [], services = [] }) => {
         </div>
       </section>
 
-      {services.map((service, pillarIndex) => (
-        <section key={service._id} className="pillar-section">
+      {services.map((service) => (
+        <section key={service._id} className={`pillar-section accent-${service.accent || 'truck-grey'}`}>
           <div className="pillar-divider"></div>
           <div className="pillar-container">
             <div className="pillar-content">
@@ -88,55 +60,22 @@ const AboutUs = ({ pageData = {}, teamMembers = [], services = [] }) => {
                 <p className="pillar-description">{service.description}</p>
               </div>
             </div>
-
-            {service.image && (
-              <div className="pillar-showreel">
-                <img
-                  src={getImageUrl(service.image, 1400, 220)}
-                  alt={service.image?.alt || service.heading}
-                  className="pillar-image"
-                />
+            <div className={`pillar-showreel accent-${service.accent || 'truck-grey'}`}>
+              <div className="pillar-showreel-copy">
+                <span className="pillar-showreel-label">{service.heading}</span>
+                <h3 className="pillar-showreel-title">{service.cards?.[0]?.title || service.heading}</h3>
               </div>
-            )}
+            </div>
 
-            {service.cards && service.cards.length > 0 && (
-              <div className="pillar-carousel">
-                <div
-                  className="carousel-track"
-                  style={{ transform: `translateX(-${(activeCarousel[pillarIndex] || 0) * 100}%)` }}
-                >
-                  {service.cards.map((card, index) => (
-                    <div key={index} className="carousel-card">
-                      <span className="card-bullet">&bull;</span>
-                      <h4 className="card-title">{card.title}</h4>
-                      <p className="card-description">{card.description}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="carousel-controls">
-                  <button
-                    onClick={() => handleCarouselPrev(pillarIndex, service.cards.length)}
-                    className="carousel-btn"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-                  <div className="carousel-dots">
-                    {service.cards.map((_, index) => (
-                      <span
-                        key={index}
-                        className={`dot ${(activeCarousel[pillarIndex] || 0) === index ? 'active' : ''}`}
-                      ></span>
-                    ))}
-                  </div>
-                  <button
-                    onClick={() => handleCarouselNext(pillarIndex, service.cards.length)}
-                    className="carousel-btn"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
-                </div>
-              </div>
-            )}
+            <div className="pillar-cards">
+              {service.cards?.map((card, index) => (
+                <article key={`${service._id}-${index}`} className="pillar-card">
+                  <span className="card-bullet"></span>
+                  <h4 className="card-title">{card.title}</h4>
+                  <p className="card-description">{card.description}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
       ))}
@@ -145,7 +84,7 @@ const AboutUs = ({ pageData = {}, teamMembers = [], services = [] }) => {
         <div className="team-container">
           <span className="section-eyebrow">{pageData.teamEyebrow || 'The Team'}</span>
           <h2 className="section-heading">
-            {pageData.teamHeading || 'The Branfern Collective'}
+            {pageData.teamHeading || 'The Paper Hoof Collective'}
           </h2>
           <p className="team-description">
             {pageData.teamDescription ||
@@ -155,26 +94,6 @@ const AboutUs = ({ pageData = {}, teamMembers = [], services = [] }) => {
           <div className="team-grid">
             {teamMembers.map((member) => (
               <div key={member._id} className="team-member">
-                <div className="team-image-container">
-                  {member.image && (
-                    <img
-                      src={getImageUrl(member.image, 300, 300)}
-                      alt={member.image?.alt || member.name}
-                      className="team-image"
-                    />
-                  )}
-                  {member.instagramUrl && (
-                    <a
-                      href={member.instagramUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="team-overlay"
-                    >
-                      <span>Instagram</span>
-                      <ArrowUpRight size={20} />
-                    </a>
-                  )}
-                </div>
                 <h4 className="team-name">{member.name}</h4>
                 <p className="team-role">{member.role}</p>
               </div>

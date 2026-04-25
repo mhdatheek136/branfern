@@ -1,3 +1,4 @@
+import { Cormorant_Garamond, Inter } from 'next/font/google';
 import './globals.css';
 import SiteShell from '../src/components/SiteShell';
 import { siteSettings as defaultSettings } from '../src/content/site';
@@ -8,9 +9,28 @@ import {
   getSocialLinks,
 } from '../src/lib/content';
 
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-ui',
+  display: 'swap',
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-editorial',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+});
+
 export const metadata = {
-  title: defaultSettings.seoDefaultTitle,
+  title: {
+    default: defaultSettings.seoDefaultTitle,
+    template: '%s',
+  },
   description: defaultSettings.seoDefaultDescription,
+  icons: {
+    icon: '/content/paparhoof/branding/favicon.svg',
+  },
 };
 
 export default async function RootLayout({ children }) {
@@ -23,7 +43,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body>
+      <body className={`${inter.variable} ${cormorant.variable}`}>
         <SiteShell
           settings={settings}
           socialLinks={socialLinks}

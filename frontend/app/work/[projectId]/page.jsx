@@ -8,13 +8,13 @@ export async function generateMetadata({ params }) {
 
   if (!project) {
     return {
-      title: 'Project Not Found | Branfern',
+      title: 'Project Not Found | Paper Hoof',
       description: 'The requested project could not be found.',
     };
   }
 
   return {
-    title: project.seoTitle || `${project.name} | Branfern`,
+    title: project.seoTitle || `${project.name} | Paper Hoof`,
     description: project.seoDescription || project.shortDescription,
   };
 }

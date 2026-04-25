@@ -1,247 +1,276 @@
 const image = (src, alt, caption = "") => ({ src, alt, caption });
 const paragraph = (text) => ({ type: "paragraph", text });
-const quote = (text) => ({ type: "quote", text });
 
 export const projects = [
   {
-    _id: "project-northstar",
+    _id: "project-burger-hot",
     order: 1,
-    slug: "northstar-grocer",
-    name: "Northstar Grocer",
-    category: "Retail Identity",
-    tags: ["Branding", "Retail", "Packaging"],
-    date: "2026-02-04",
-    location: "Colombo, Sri Lanka",
+    slug: "burger-hot",
+    name: "Burger Hot",
+    category: "Food Chain",
+    tags: ["Branding", "Identity", "UI/UX"],
+    date: "2026-03-06",
+    location: "Sri Lanka",
     shortDescription:
-      "A modular retail identity for a premium neighborhood grocer with a growing private-label line.",
+      "A high-contrast food chain identity built to feel loud, legible, and campaign-ready across physical and digital touchpoints.",
     fullDescription: [
       paragraph(
-        "Northstar needed a system that felt premium without becoming distant. The goal was to make the store, packaging, and digital touchpoints feel part of one family.",
+        "Burger Hot turns fast-food energy into a sharper brand system. The work balances appetite appeal with a disciplined identity language that can stretch from signage to digital launch assets.",
       ),
       paragraph(
-        "We built a shelf-first identity with clear hierarchy, bold color zoning, and a packaging rhythm that could scale product by product.",
-      ),
-      quote(
-        "The strongest retail brands do not shout. They help customers orient themselves quickly and trust what they pick up.",
+        "The visual system uses bold contrast, concise tagging, and product-first imagery so every application lands with speed and clarity.",
       ),
     ],
-    mainImage: image("/content/projects/project-1.svg", "Northstar Grocer hero artwork"),
-    seoTitle: "Northstar Grocer | Branfern",
-    seoDescription:
-      "Retail identity and packaging system for Northstar Grocer by Branfern.",
-    seoImage: image("/content/projects/project-1.svg", "Northstar Grocer SEO artwork"),
+    mainImage: image("/content/paparhoof/screens/frame-4.png", "Burger Hot preview"),
+    seoTitle: "Burger Hot | Paper Hoof",
+    seoDescription: "Food-chain identity and rollout system by Paper Hoof.",
     gallery: [
-      image("/content/projects/project-1.svg", "Northstar shelf system", "Storefront system study"),
-      image("/content/projects/project-2.svg", "Northstar packaging", "Private label packaging samples"),
+      image("/content/paparhoof/screens/frame-4.png", "Burger Hot identity preview"),
+      image("/content/paparhoof/screens/we-design-everything-expansion.png", "Burger Hot overlay preview"),
     ],
     contentSections: [
       {
         id: "challenge",
         sectionType: "text",
-        heading: "The Challenge",
+        heading: "Focus",
         content: [
           paragraph(
-            "The previous identity looked polished in isolation but broke apart in-store. Signage, promotions, and packaging felt like separate brands.",
+            "Build a brand that feels immediate and memorable while remaining systemized enough to work across menus, digital promotions, and store graphics.",
           ),
         ],
       },
       {
-        id: "approach",
-        sectionType: "textImage",
-        heading: "Our Approach",
-        content: [
-          paragraph(
-            "We designed a color-coded category system, a disciplined typographic scale, and repeatable label logic so every application felt familiar.",
-          ),
-        ],
-        image: image("/content/projects/project-3.svg", "Northstar approach board"),
-      },
-      {
-        id: "rollout",
+        id: "system",
         sectionType: "gallery",
-        heading: "Rollout Highlights",
+        heading: "System Signals",
         images: [
-          image("/content/projects/project-1.svg", "Northstar rollout one"),
-          image("/content/projects/project-2.svg", "Northstar rollout two"),
-          image("/content/projects/project-3.svg", "Northstar rollout three"),
+          image("/content/paparhoof/screens/frame-4.png", "Burger Hot feature panel"),
+          image("/content/paparhoof/screens/home-page.png", "Burger Hot on home page"),
         ],
       },
     ],
   },
   {
-    _id: "project-harbor",
+    _id: "project-odera",
     order: 2,
-    slug: "harbor-athletics",
-    name: "Harbor Athletics",
-    category: "Sports Brand",
-    tags: ["Sports", "Identity", "Digital Presence"],
-    date: "2026-01-12",
-    location: "Dubai, UAE",
+    slug: "odera",
+    name: "Odera",
+    category: "Supermarket",
+    tags: ["Branding", "System", "Digital Presence"],
+    date: "2026-03-18",
+    location: "Sri Lanka",
     shortDescription:
-      "A sharper identity and launch kit for a training studio built around performance and community.",
+      "A supermarket identity system structured for clarity, trust, and quick recognition across shelf, signage, and promotional touchpoints.",
     fullDescription: [
       paragraph(
-        "Harbor Athletics wanted to look serious enough for athletes and open enough for everyday members.",
+        "Odera is positioned as a disciplined retail system rather than a decorative identity. The work focuses on wayfinding, hierarchy, and repeatable communication blocks.",
       ),
       paragraph(
-        "We built a system around pace, repetition, and impact so the brand could move from signage to social without losing tension.",
+        "The result is a brand that feels calm and organized while still carrying enough character for campaign work and social rollouts.",
       ),
     ],
-    mainImage: image("/content/projects/project-2.svg", "Harbor Athletics hero artwork"),
-    seoTitle: "Harbor Athletics | Branfern",
-    seoDescription:
-      "Sports identity and launch system for Harbor Athletics by Branfern.",
-    seoImage: image("/content/projects/project-2.svg", "Harbor Athletics SEO artwork"),
-    gallery: [image("/content/projects/project-2.svg", "Harbor Athletics campaign wall")],
+    artDirection: {
+      background: "#FFFDF7",
+      foreground: "#01360A",
+      eyebrow: "Supermarket",
+      wordmark: "ODERA",
+      tone: "Retail structure",
+    },
+    seoTitle: "Odera | Paper Hoof",
+    seoDescription: "Retail identity and supermarket rollout system by Paper Hoof.",
+    gallery: [
+      image("/content/paparhoof/screens/work-page.png", "Odera in the project grid"),
+      image("/content/paparhoof/screens/about-us.png", "Odera-style system showcase"),
+    ],
+    contentSections: [
+      {
+        id: "challenge",
+        sectionType: "text",
+        heading: "Focus",
+        content: [
+          paragraph(
+            "Create a flexible supermarket identity that feels professional, navigable, and ready for large-format rollout without visual clutter.",
+          ),
+        ],
+      },
+    ],
+  },
+  {
+    _id: "project-yaloo",
+    order: 3,
+    slug: "yaloo",
+    name: "Yaloo",
+    category: "Tourism",
+    tags: ["Identity", "Social Media", "Digital Presence"],
+    date: "2026-03-22",
+    location: "Sri Lanka",
+    shortDescription:
+      "A tourism-facing identity shaped to feel welcoming, lightweight, and adaptable across destination storytelling and promotional media.",
+    fullDescription: [
+      paragraph(
+        "Yaloo is designed to travel well across digital touchpoints. The system leans on clear typography, modular image spaces, and a lighter tone of voice.",
+      ),
+      paragraph(
+        "It is built to support destination campaigns, social publishing, and hospitality-adjacent brand moments without losing coherence.",
+      ),
+    ],
+    artDirection: {
+      background: "#FFF093",
+      foreground: "#202423",
+      eyebrow: "Tourism",
+      wordmark: "YALOO",
+      tone: "Travel identity",
+    },
+    seoTitle: "Yaloo | Paper Hoof",
+    seoDescription: "Tourism identity and digital rollout by Paper Hoof.",
+    gallery: [
+      image("/content/paparhoof/screens/work-page.png", "Yaloo in the project grid"),
+      image("/content/paparhoof/screens/contact-us.png", "Campaign tone reference"),
+    ],
     contentSections: [
       {
         id: "system",
-        sectionType: "textImage",
-        heading: "System Language",
-        content: [
-          paragraph(
-            "The identity uses hard contrast, disciplined spacing, and a restrained color set that works across apparel, social cuts, and environmental graphics.",
-          ),
-        ],
-        image: image("/content/projects/project-1.svg", "Harbor Athletics motion frames"),
-      },
-    ],
-  },
-  {
-    _id: "project-kindred",
-    order: 3,
-    slug: "kindred-clinic",
-    name: "Kindred Clinic",
-    category: "Healthcare Rebrand",
-    tags: ["Identity", "Systems", "Digital Presence"],
-    date: "2025-12-03",
-    location: "Kandy, Sri Lanka",
-    shortDescription:
-      "A calm, credible identity for a growing clinic balancing trust, warmth, and operational clarity.",
-    fullDescription: [
-      paragraph(
-        "The clinic had strong word of mouth but an inconsistent public face. We simplified the message, refined the language, and built a usable visual system for staff.",
-      ),
-    ],
-    mainImage: image("/content/projects/project-3.svg", "Kindred Clinic hero artwork"),
-    seoTitle: "Kindred Clinic | Branfern",
-    seoDescription:
-      "Healthcare brand identity and patient-facing touchpoint system for Kindred Clinic.",
-    seoImage: image("/content/projects/project-3.svg", "Kindred Clinic SEO artwork"),
-    gallery: [image("/content/projects/project-3.svg", "Kindred Clinic patient guide")],
-    contentSections: [
-      {
-        id: "voice",
         sectionType: "text",
-        heading: "Voice and Clarity",
+        heading: "System Signals",
         content: [
           paragraph(
-            "We translated medical expertise into a warmer, clearer communication system that felt human without losing authority.",
+            "The design direction prioritizes approachable typography, soft contrast, and layouts that allow photography and destination copy to lead.",
           ),
         ],
       },
     ],
   },
   {
-    _id: "project-cedar",
+    _id: "project-woodland-publishing",
     order: 4,
-    slug: "cedar-house",
-    name: "Cedar House",
-    category: "Hospitality Identity",
-    tags: ["Hospitality", "Branding", "Social Media"],
-    date: "2025-10-18",
-    location: "Ella, Sri Lanka",
+    slug: "woodland-publishing",
+    name: "Woodland Publishing",
+    category: "Publishing",
+    tags: ["Branding", "System", "Cinema"],
+    date: "2026-03-28",
+    location: "Sri Lanka",
     shortDescription:
-      "A boutique hospitality brand built around quiet luxury, local texture, and editorial storytelling.",
+      "A publishing identity that favors editorial rhythm, typographic restraint, and a clear system for long-form visual storytelling.",
     fullDescription: [
       paragraph(
-        "Cedar House needed a quieter tone than the category norm. We moved away from generic luxury cues and built a more tactile, editorial identity.",
+        "Woodland Publishing is framed as a slower, more considered brand. The identity system uses controlled spacing, serif moments, and quiet compositional balance.",
+      ),
+      paragraph(
+        "It is suited to covers, internal collateral, and digital presentation where the hierarchy needs to feel refined instead of loud.",
       ),
     ],
-    mainImage: image("/content/projects/project-1.svg", "Cedar House hero artwork"),
-    seoTitle: "Cedar House | Branfern",
-    seoDescription:
-      "Hospitality branding and digital storytelling system for Cedar House.",
-    seoImage: image("/content/projects/project-1.svg", "Cedar House SEO artwork"),
-    gallery: [image("/content/projects/project-2.svg", "Cedar House social rollout")],
+    artDirection: {
+      background: "#FFF093",
+      foreground: "#202423",
+      eyebrow: "Publishing",
+      wordmark: "WOODLAND",
+      tone: "Editorial world",
+    },
+    seoTitle: "Woodland Publishing | Paper Hoof",
+    seoDescription: "Publishing identity system by Paper Hoof.",
+    gallery: [
+      image("/content/paparhoof/screens/work-page.png", "Woodland Publishing in the grid"),
+      image("/content/paparhoof/screens/about-us.png", "Publishing mood reference"),
+    ],
     contentSections: [
       {
-        id: "experience",
-        sectionType: "textImage",
-        heading: "Experience System",
+        id: "approach",
+        sectionType: "text",
+        heading: "Approach",
         content: [
           paragraph(
-            "We aligned menus, room collateral, and social templates so every guest touchpoint reflected the same quiet confidence.",
+            "The system is organized around editorial calm: strong titles, quiet surfaces, and enough flexibility to support print and digital publishing formats.",
           ),
         ],
-        image: image("/content/projects/project-2.svg", "Cedar House collateral"),
       },
     ],
   },
   {
-    _id: "project-atlas",
+    _id: "project-burrowed",
     order: 5,
-    slug: "atlas-auto",
-    name: "Atlas Auto",
-    category: "Automotive Campaign",
-    tags: ["Vehicle", "Campaign", "Digital Presence"],
-    date: "2025-08-29",
-    location: "Doha, Qatar",
+    slug: "burrowed",
+    name: "Burrowed",
+    category: "Magazine",
+    tags: ["Identity", "Digital Presence", "UI/UX"],
+    date: "2026-04-02",
+    location: "Sri Lanka",
     shortDescription:
-      "A campaign identity for an automotive distributor launching a more premium service experience.",
+      "A literary magazine identity with an editorial serif hero, deep navy framing, and a measured digital presentation system.",
     fullDescription: [
       paragraph(
-        "Atlas Auto needed a campaign system that felt aspirational without drifting away from the realities of after-sales service and trust.",
+        "Burrowed centers on a strong editorial masthead and a restrained surface system. The visual language pairs literary softness with clear interface logic.",
+      ),
+      paragraph(
+        "It demonstrates how Paper Hoof handles serif-led identities without sacrificing structure or usability.",
       ),
     ],
-    mainImage: image("/content/projects/project-2.svg", "Atlas Auto hero artwork"),
-    seoTitle: "Atlas Auto | Branfern",
-    seoDescription:
-      "Campaign identity and digital rollout for Atlas Auto by Branfern.",
-    seoImage: image("/content/projects/project-2.svg", "Atlas Auto SEO artwork"),
-    gallery: [image("/content/projects/project-2.svg", "Atlas Auto launch poster")],
+    mainImage: image("/content/paparhoof/screens/hero-content.png", "Burrowed hero panel"),
+    artDirection: {
+      background: "#173755",
+      foreground: "#FFFDF7",
+      eyebrow: "Magazine",
+      wordmark: "BURROWED",
+      tone: "a literary magazine",
+    },
+    seoTitle: "Burrowed | Paper Hoof",
+    seoDescription: "Editorial magazine identity by Paper Hoof.",
+    gallery: [
+      image("/content/paparhoof/screens/hero-content.png", "Burrowed title treatment"),
+      image("/content/paparhoof/screens/frame-799.png", "Burrowed project card"),
+    ],
     contentSections: [
       {
-        id: "campaign",
-        sectionType: "gallery",
-        heading: "Campaign Components",
-        images: [
-          image("/content/projects/project-2.svg", "Atlas Auto landing page"),
-          image("/content/projects/project-3.svg", "Atlas Auto service ad"),
+        id: "identity",
+        sectionType: "text",
+        heading: "Identity Language",
+        content: [
+          paragraph(
+            "Burrowed uses a high-contrast masthead, minimal accent cues, and structured spacing to make the editorial experience feel premium and legible.",
+          ),
         ],
       },
     ],
   },
   {
-    _id: "project-signal",
+    _id: "project-dhch",
     order: 6,
-    slug: "signal-house",
-    name: "Signal House",
-    category: "Creative Studio Identity",
-    tags: ["UI/UX", "Systems", "Identity"],
-    date: "2025-06-15",
-    location: "Remote",
+    slug: "dhch",
+    name: "DHCH",
+    category: "Institution",
+    tags: ["Institution", "System", "Digital Presence"],
+    date: "2026-04-09",
+    location: "Sri Lanka",
     shortDescription:
-      "A lean identity and website kit for a content-led creative studio rebuilding from the ground up.",
+      "An institutional identity system designed for clarity, authority, and repeatable communications across public-facing touchpoints.",
     fullDescription: [
       paragraph(
-        "Signal House needed a fast, lightweight system they could operate without design bottlenecks. The work focused on clarity, pace, and a content-first hierarchy.",
+        "DHCH is treated as a system-first brand. The work emphasizes confidence, consistency, and a visual structure that can scale beyond a single campaign moment.",
+      ),
+      paragraph(
+        "It is designed to support institutional messaging with clean hierarchy and practical rollout logic.",
       ),
     ],
-    mainImage: image("/content/projects/project-3.svg", "Signal House hero artwork"),
-    seoTitle: "Signal House | Branfern",
-    seoDescription:
-      "Creative studio identity and web system for Signal House.",
-    seoImage: image("/content/projects/project-3.svg", "Signal House SEO artwork"),
-    gallery: [image("/content/projects/project-1.svg", "Signal House homepage")],
+    artDirection: {
+      background: "#FFF093",
+      foreground: "#202423",
+      eyebrow: "Institution",
+      wordmark: "DHCH",
+      tone: "Institutional clarity",
+    },
+    seoTitle: "DHCH | Paper Hoof",
+    seoDescription: "Institutional identity and communications system by Paper Hoof.",
+    gallery: [
+      image("/content/paparhoof/screens/work-page.png", "DHCH in the project grid"),
+      image("/content/paparhoof/screens/contact-us.png", "Institutional system reference"),
+    ],
     contentSections: [
       {
-        id: "web",
+        id: "focus",
         sectionType: "text",
-        heading: "Website System",
+        heading: "Focus",
         content: [
           paragraph(
-            "We structured the site around repeatable sections so new case studies and service updates could be added without redesigning every page.",
+            "Develop a reliable institutional visual system that feels serious, accessible, and ready for ongoing communications.",
           ),
         ],
       },

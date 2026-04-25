@@ -27,6 +27,8 @@ function navProject(project) {
     slug: project.slug,
     name: project.name,
     mainImage: project.mainImage,
+    artDirection: project.artDirection,
+    category: project.category,
   };
 }
 
@@ -144,7 +146,7 @@ export async function createBooking(data) {
     "",
     `Service: ${data.service || "-"}`,
     `Budget: ${data.budget || "-"}`,
-    `How they heard about Branfern: ${data.hearAbout || "-"}`,
+    `How they heard about Paper Hoof: ${data.hearAbout || "-"}`,
     `Referrer: ${data.referrer || "-"}`,
     "",
     `First name: ${data.firstName || "-"}`,

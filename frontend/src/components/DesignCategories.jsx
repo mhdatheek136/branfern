@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { X, ChevronUp } from 'lucide-react';
-import { urlFor } from '../lib/content';
+import ProjectVisual from './ProjectVisual';
 
 const defaultCategories = [
   'BRANDING',
@@ -79,14 +79,6 @@ const DesignCategories = ({
     return matchingProject || projects[0];
   };
 
-  const getImageUrl = (image) => {
-    if (!image) {
-      return null;
-    }
-
-    return urlFor(image).width(400).height(300).fit('crop').url();
-  };
-
   if (isExpanded) {
     return (
       <div className="design-categories-overlay" onClick={handleClose}>
@@ -115,15 +107,17 @@ const DesignCategories = ({
           </div>
 
           <div className="preview-container">
-            {hoveredCategory && getProjectForCategory(hoveredCategory)?.mainImage ? (
+            {hoveredCategory && getProjectForCategory(hoveredCategory) ? (
               <div className="preview-content">
-                <img
-                  src={getImageUrl(getProjectForCategory(hoveredCategory).mainImage)}
-                  alt={hoveredCategory}
-                  className="preview-image"
+                <ProjectVisual
+                  project={getProjectForCategory(hoveredCategory)}
+                  width={900}
+                  height={560}
+                  imageClassName="preview-image"
+                  fallbackClassName="preview-fallback"
                 />
                 <div className="preview-overlay">
-                  <span className="preview-label">{hoveredCategory}</span>
+                  <span className="preview-label">{getProjectForCategory(hoveredCategory).name}</span>
                 </div>
               </div>
             ) : (

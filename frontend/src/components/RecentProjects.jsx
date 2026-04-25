@@ -1,16 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { urlFor } from '../lib/content';
+import ProjectVisual from './ProjectVisual';
 
 const RecentProjects = ({ projects = [] }) => {
-  const getImageUrl = (image) => {
-    if (!image) {
-      return null;
-    }
-
-    return urlFor(image).width(800).height(600).fit('crop').url();
-  };
-
   if (!projects.length) {
     return (
       <section id="recent-projects" className="recent-projects-section">
@@ -27,23 +19,23 @@ const RecentProjects = ({ projects = [] }) => {
       <div className="container">
         <h2 className="section-title">RECENT PROJECTS</h2>
         <div className="projects-grid">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <Link
               key={project._id}
               href={`/work/${project.slug}`}
-              className="project-card"
+              className={`project-card ${index === 0 ? 'featured' : ''}`}
             >
               <div className="project-image-wrapper">
-                {project.mainImage && (
-                  <img
-                    src={getImageUrl(project.mainImage)}
-                    alt={project.mainImage?.alt || project.name}
-                    className="project-image"
-                  />
-                )}
+                <ProjectVisual
+                  project={project}
+                  width={1400}
+                  height={1000}
+                  imageClassName="project-image"
+                  fallbackClassName="project-visual-card"
+                />
                 <div className="project-tags">
-                  {project.tags?.map((tag, index) => (
-                    <span key={index} className="project-tag !my-[4px] !mx-[4px] !py-[4px] !px-[4px] !rounded">
+                  {project.tags?.slice(0, 3).map((tag, tagIndex) => (
+                    <span key={tagIndex} className="project-tag">
                       {tag}
                     </span>
                   ))}

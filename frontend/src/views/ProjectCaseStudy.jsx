@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { X, Plus } from 'lucide-react';
+import ProjectVisual from '../components/ProjectVisual';
 import { urlFor } from '../lib/content';
 
 function renderRichContent(blocks = []) {
@@ -46,8 +46,6 @@ function renderRichContent(blocks = []) {
 }
 
 const ProjectCaseStudy = ({ project }) => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
   const getImageUrl = (image, width = 1400, height = 800) => {
     if (!image) {
       return null;
@@ -91,50 +89,60 @@ const ProjectCaseStudy = ({ project }) => {
     <div className="case-study-page">
       <section className="case-study-hero">
         <div className="case-study-hero-container">
-          <div className="hero-left">
+          <div className="case-study-copy">
+            <span className="case-study-category">{project.category}</span>
             <h1 className="case-study-title">{project.name}</h1>
-            <div className="case-study-gradient-divider"></div>
+            <p className="case-study-short-desc">{project.shortDescription}</p>
             <div className="case-study-meta">
-              {project.date && (
-                <>
-                  <span className="meta-date">{formatDate(project.date)}</span>
-                  <span className="meta-separator">&bull;</span>
-                </>
-              )}
-              {project.location && (
-                <span className="meta-location">{project.location}</span>
-              )}
+              {project.date && <span className="meta-date">{formatDate(project.date)}</span>}
+              {project.location && <span className="meta-location">{project.location}</span>}
             </div>
             <div className="case-study-tags">
               {project.tags?.map((tag, index) => (
                 <span key={index} className="case-tag">{tag}</span>
               ))}
             </div>
-            <p className="case-study-short-desc">{project.shortDescription}</p>
+          </div>
+          <div className="case-study-hero-media">
+            <ProjectVisual
+              project={project}
+              width={1600}
+              height={1100}
+              imageClassName="case-study-hero-image"
+              fallbackClassName="case-study-hero-fallback"
+            />
           </div>
         </div>
       </section>
 
-      <button
-        className="sticky-about-button"
-        onClick={() => setIsDrawerOpen((current) => !current)}
-      >
-        <span>About the project</span>
-        {isDrawerOpen ? <X size={20} /> : <Plus size={20} />}
-      </button>
-
-      <div className={`project-drawer ${isDrawerOpen ? 'open' : ''}`}>
-        <div className="drawer-content">
-          <h3 className="drawer-title">About the Project</h3>
-          <div className="drawer-text">
+      <section className="case-study-intro">
+        <div className="case-study-intro-container">
+          <div className="case-study-intro-main">
+            <h2 className="case-study-section-title">About the project</h2>
+            <div className="drawer-text">
             {project.fullDescription?.length > 0
               ? renderRichContent(project.fullDescription)
               : <p>{project.shortDescription}</p>}
+            </div>
+          </div>
+          <div className="case-study-intro-side">
+            <div className="case-study-fact">
+              <span className="case-study-fact-label">Category</span>
+              <span className="case-study-fact-value">{project.category}</span>
+            </div>
+            <div className="case-study-fact">
+              <span className="case-study-fact-label">Location</span>
+              <span className="case-study-fact-value">{project.location}</span>
+            </div>
+            <div className="case-study-fact">
+              <span className="case-study-fact-label">Date</span>
+              <span className="case-study-fact-value">{formatDate(project.date)}</span>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className={`case-study-content ${isDrawerOpen ? 'drawer-open' : ''}`}>
+      <div className="case-study-content">
         <div className="content-container">
           {project.gallery?.map((image, index) => (
             <div key={index} className="content-image-block">
@@ -236,13 +244,13 @@ const ProjectCaseStudy = ({ project }) => {
               className="nav-item prev"
             >
               <div className="nav-image-wrapper">
-                {project.prevProject.mainImage && (
-                  <img
-                    src={getImageUrl(project.prevProject.mainImage, 600, 400)}
-                    alt={project.prevProject.name}
-                    className="nav-project-image"
-                  />
-                )}
+                <ProjectVisual
+                  project={project.prevProject}
+                  width={900}
+                  height={600}
+                  imageClassName="nav-project-image"
+                  fallbackClassName="nav-project-fallback"
+                />
               </div>
               <div className="nav-content">
                 <span className="nav-label">Previous Project</span>
@@ -256,13 +264,13 @@ const ProjectCaseStudy = ({ project }) => {
               className="nav-item next"
             >
               <div className="nav-image-wrapper">
-                {project.nextProject.mainImage && (
-                  <img
-                    src={getImageUrl(project.nextProject.mainImage, 600, 400)}
-                    alt={project.nextProject.name}
-                    className="nav-project-image"
-                  />
-                )}
+                <ProjectVisual
+                  project={project.nextProject}
+                  width={900}
+                  height={600}
+                  imageClassName="nav-project-image"
+                  fallbackClassName="nav-project-fallback"
+                />
               </div>
               <div className="nav-content">
                 <span className="nav-label">Next Project</span>

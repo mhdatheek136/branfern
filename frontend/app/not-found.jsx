@@ -2,14 +2,14 @@ import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <section style={{ minHeight: '60vh', display: 'grid', placeItems: 'center', padding: '120px 24px' }}>
-      <div style={{ textAlign: 'center', maxWidth: '640px' }}>
-        <p style={{ marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>404</p>
-        <h1 style={{ marginBottom: '16px' }}>Page not found</h1>
-        <p style={{ marginBottom: '24px' }}>
-          The page you were looking for does not exist or may have moved.
+    <section className="not-found-page">
+      <div className="not-found-panel">
+        <span className="not-found-code">404</span>
+        <h1 className="not-found-title">This page wandered off the path.</h1>
+        <p className="not-found-description">
+          The page you were looking for does not exist or may have moved. Let&apos;s get you back to the Paper Hoof front page.
         </p>
-        <Link href="/" className="brand-review-btn">
+        <Link href="/" className="not-found-link">
           Back Home
         </Link>
       </div>

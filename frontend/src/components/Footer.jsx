@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Instagram, Music, MessageCircle, Linkedin, ArrowUp, X, ChevronUp } from 'lucide-react';
-import { urlFor } from '../lib/content';
+import { Instagram, Music, MessageCircle, Linkedin, X, ChevronUp } from 'lucide-react';
+import ProjectVisual from './ProjectVisual';
 
 const getIconComponent = (iconName) => {
   const icons = {
@@ -49,14 +49,6 @@ const Footer = ({
     return matchingProject || projects[0];
   };
 
-  const getImageUrl = (image) => {
-    if (!image) {
-      return null;
-    }
-
-    return urlFor(image).width(400).height(300).fit('crop').url();
-  };
-
   return (
     <>
       {isExpanded && (
@@ -88,15 +80,15 @@ const Footer = ({
             <div className="preview-container">
               {hoveredCategory ? (
                 <div className="preview-content">
-                  {getProjectForCategory(hoveredCategory)?.mainImage && (
-                    <img
-                      src={getImageUrl(getProjectForCategory(hoveredCategory).mainImage)}
-                      alt={hoveredCategory}
-                      className="preview-image"
-                    />
-                  )}
+                  <ProjectVisual
+                    project={getProjectForCategory(hoveredCategory)}
+                    width={900}
+                    height={560}
+                    imageClassName="preview-image"
+                    fallbackClassName="preview-fallback"
+                  />
                   <div className="preview-overlay">
-                    <span className="preview-label">{hoveredCategory}</span>
+                    <span className="preview-label">{getProjectForCategory(hoveredCategory)?.name || hoveredCategory}</span>
                   </div>
                 </div>
               ) : (
@@ -113,19 +105,21 @@ const Footer = ({
         <div className="footer-main">
           <div className="footer-container">
             <div className="footer-col footer-col-left">
-              <div className="footer-brand-mark">
-                <svg viewBox="0 0 400 400" fill="none" className="brand-mark-svg">
-                  <rect x="80" y="140" width="240" height="180" fill="currentColor" />
-                  <path d="M140 100 L200 40 L260 100" stroke="currentColor" strokeWidth="24" />
-                  <circle cx="200" cy="230" r="30" fill="var(--bg-cream)" />
-                </svg>
-              </div>
+              <img
+                src="/content/paparhoof/branding/emblem.svg"
+                alt={`${settings?.companyName || 'Paper Hoof'} emblem`}
+                className="footer-brand-mark"
+              />
             </div>
 
             <div className="footer-divider-vertical"></div>
 
             <div className="footer-col footer-col-middle">
-              <h2 className="footer-wordmark">{settings?.companyName || 'Branfern'}</h2>
+              <img
+                src="/content/paparhoof/branding/wordmark-horizontal.svg"
+                alt={settings?.companyName || 'Paper Hoof'}
+                className="footer-wordmark-logo"
+              />
             </div>
 
             <div className="footer-divider-vertical"></div>
@@ -185,16 +179,13 @@ const Footer = ({
 
             <nav className="footer-nav">
               <Link href="/" className="footer-nav-link">{settings?.navHomeLabel || 'HOME'}</Link>
-              <Link href="/brand-review" className="footer-nav-link">{settings?.navBrandReviewLabel || 'BRAND REVIEW'}</Link>
-              <Link href="/about" className="footer-nav-link">{settings?.navAboutLabel || 'ABOUT'}</Link>
               <Link href="/work" className="footer-nav-link">{settings?.navWorkLabel || 'WORK'}</Link>
+              <Link href="/about" className="footer-nav-link">{settings?.navAboutLabel || 'ABOUT'}</Link>
               <Link href="/contact" className="footer-nav-link">{settings?.navContactLabel || 'CONTACT'}</Link>
+              <button className="footer-scroll-top" onClick={scrollToTop}>
+                {settings?.footerScrollTopText || 'Scroll Up'}
+              </button>
             </nav>
-
-            <button className="footer-scroll-top" onClick={scrollToTop}>
-              <ArrowUp size={20} />
-              <span>{settings?.footerScrollTopText || 'Scroll Up'}</span>
-            </button>
           </div>
         </div>
       </footer>

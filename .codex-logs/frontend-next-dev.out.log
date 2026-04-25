@@ -16,3 +16,7 @@ Creating turbopack project { dir: 'E:\\woodtech\\branfern\\frontend', testMode: 
  GET /brand-review 200 in 1267ms (next.js: 1209ms, application-code: 58ms)
  GET /about 200 in 498ms (next.js: 459ms, application-code: 39ms)
  GET /contact 200 in 446ms (next.js: 399ms, application-code: 47ms)
+✓ Compiled in 229ms
+✓ Compiled in 171ms
+✓ Compiled in 1282ms
+✓ Compiled in 870ms

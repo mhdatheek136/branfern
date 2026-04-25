@@ -6,7 +6,7 @@ import { urlFor } from '../lib/content';
 const fallbackSlides = [
   {
     _id: 'fallback-slide',
-    title: 'BRANFERN',
+    title: 'PAPER HOOF',
     subtitle: 'Design systems for brands that need traction and clarity.',
     image: null,
   },
@@ -52,10 +52,6 @@ const Hero = ({ slides = fallbackSlides }) => {
               />
             )}
             <div className="carousel-overlay" />
-            <div className="carousel-content">
-              <h1 className="carousel-title">{slide.title}</h1>
-              <p className="carousel-subtitle">{slide.subtitle}</p>
-            </div>
           </div>
         ))}
       </div>
