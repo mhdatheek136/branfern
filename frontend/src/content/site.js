@@ -8,8 +8,8 @@ export const siteSettings = {
   seoDefaultTitle: "Paper Hoof",
   seoDefaultDescription: "Paper Hoof builds identity systems, campaign visuals, and digital presence with editorial clarity.",
   seoDefaultImage: image(
-    "/content/paparhoof/screens/hero-content.png",
-    "Paper Hoof hero artwork",
+    "/content/hero/slide-brand.svg",
+    "Paper Hoof placeholder hero artwork",
   ),
   footerOverlayTitle: "We Design",
   footerOverlaySubtitle: "Everything",
@@ -67,19 +67,19 @@ export const showreelSlides = [
     _id: "slide-burrowed",
     title: "BURROWED",
     subtitle: "a literary magazine",
-    image: image("/content/paparhoof/screens/hero-content.png", "Burrowed title treatment"),
+    image: image("/content/hero/slide-brand.svg", "Burrowed placeholder composition"),
   },
   {
     _id: "slide-burger-hot",
     title: "BURGER HOT",
     subtitle: "identity, packaging, and launch rollout",
-    image: image("/content/paparhoof/screens/frame-4.png", "Burger Hot preview"),
+    image: image("/content/hero/slide-motion.svg", "Burger Hot placeholder composition"),
   },
   {
     _id: "slide-paper-hoof",
     title: "PAPER HOOF",
     subtitle: "design systems for brands that need traction and clarity",
-    image: image("/content/paparhoof/screens/home-page.png", "Paper Hoof home page composition"),
+    image: image("/content/hero/slide-systems.svg", "Paper Hoof placeholder composition"),
   },
 ];
 

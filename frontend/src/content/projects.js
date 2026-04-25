@@ -1,5 +1,8 @@
 const image = (src, alt, caption = "") => ({ src, alt, caption });
 const paragraph = (text) => ({ type: "paragraph", text });
+const placeholderOne = "/content/projects/project-1.svg";
+const placeholderTwo = "/content/projects/project-2.svg";
+const placeholderThree = "/content/projects/project-3.svg";
 
 export const projects = [
   {
@@ -21,12 +24,12 @@ export const projects = [
         "The visual system uses bold contrast, concise tagging, and product-first imagery so every application lands with speed and clarity.",
       ),
     ],
-    mainImage: image("/content/paparhoof/screens/frame-4.png", "Burger Hot preview"),
+    mainImage: image(placeholderOne, "Burger Hot placeholder preview"),
     seoTitle: "Burger Hot | Paper Hoof",
     seoDescription: "Food-chain identity and rollout system by Paper Hoof.",
     gallery: [
-      image("/content/paparhoof/screens/frame-4.png", "Burger Hot identity preview"),
-      image("/content/paparhoof/screens/we-design-everything-expansion.png", "Burger Hot overlay preview"),
+      image(placeholderOne, "Burger Hot placeholder identity preview"),
+      image(placeholderTwo, "Burger Hot placeholder overlay preview"),
     ],
     contentSections: [
       {
@@ -44,8 +47,8 @@ export const projects = [
         sectionType: "gallery",
         heading: "System Signals",
         images: [
-          image("/content/paparhoof/screens/frame-4.png", "Burger Hot feature panel"),
-          image("/content/paparhoof/screens/home-page.png", "Burger Hot on home page"),
+          image(placeholderOne, "Burger Hot placeholder feature panel"),
+          image(placeholderThree, "Burger Hot placeholder home page panel"),
         ],
       },
     ],
@@ -76,11 +79,12 @@ export const projects = [
       wordmark: "ODERA",
       tone: "Retail structure",
     },
+    mainImage: image(placeholderTwo, "Odera placeholder preview"),
     seoTitle: "Odera | Paper Hoof",
     seoDescription: "Retail identity and supermarket rollout system by Paper Hoof.",
     gallery: [
-      image("/content/paparhoof/screens/work-page.png", "Odera in the project grid"),
-      image("/content/paparhoof/screens/about-us.png", "Odera-style system showcase"),
+      image(placeholderTwo, "Odera placeholder project grid"),
+      image(placeholderThree, "Odera placeholder system showcase"),
     ],
     contentSections: [
       {
@@ -121,11 +125,12 @@ export const projects = [
       wordmark: "YALOO",
       tone: "Travel identity",
     },
+    mainImage: image(placeholderThree, "Yaloo placeholder preview"),
     seoTitle: "Yaloo | Paper Hoof",
     seoDescription: "Tourism identity and digital rollout by Paper Hoof.",
     gallery: [
-      image("/content/paparhoof/screens/work-page.png", "Yaloo in the project grid"),
-      image("/content/paparhoof/screens/contact-us.png", "Campaign tone reference"),
+      image(placeholderThree, "Yaloo placeholder project grid"),
+      image(placeholderOne, "Yaloo placeholder campaign reference"),
     ],
     contentSections: [
       {
@@ -166,11 +171,12 @@ export const projects = [
       wordmark: "WOODLAND",
       tone: "Editorial world",
     },
+    mainImage: image(placeholderOne, "Woodland Publishing placeholder preview"),
     seoTitle: "Woodland Publishing | Paper Hoof",
     seoDescription: "Publishing identity system by Paper Hoof.",
     gallery: [
-      image("/content/paparhoof/screens/work-page.png", "Woodland Publishing in the grid"),
-      image("/content/paparhoof/screens/about-us.png", "Publishing mood reference"),
+      image(placeholderOne, "Woodland Publishing placeholder grid preview"),
+      image(placeholderTwo, "Woodland Publishing placeholder mood reference"),
     ],
     contentSections: [
       {
@@ -204,7 +210,7 @@ export const projects = [
         "It demonstrates how Paper Hoof handles serif-led identities without sacrificing structure or usability.",
       ),
     ],
-    mainImage: image("/content/paparhoof/screens/hero-content.png", "Burrowed hero panel"),
+    mainImage: image(placeholderTwo, "Burrowed placeholder hero panel"),
     artDirection: {
       background: "#173755",
       foreground: "#FFFDF7",
@@ -215,8 +221,8 @@ export const projects = [
     seoTitle: "Burrowed | Paper Hoof",
     seoDescription: "Editorial magazine identity by Paper Hoof.",
     gallery: [
-      image("/content/paparhoof/screens/hero-content.png", "Burrowed title treatment"),
-      image("/content/paparhoof/screens/frame-799.png", "Burrowed project card"),
+      image(placeholderTwo, "Burrowed placeholder title treatment"),
+      image(placeholderThree, "Burrowed placeholder project card"),
     ],
     contentSections: [
       {
@@ -257,11 +263,12 @@ export const projects = [
       wordmark: "DHCH",
       tone: "Institutional clarity",
     },
+    mainImage: image(placeholderThree, "DHCH placeholder preview"),
     seoTitle: "DHCH | Paper Hoof",
     seoDescription: "Institutional identity and communications system by Paper Hoof.",
     gallery: [
-      image("/content/paparhoof/screens/work-page.png", "DHCH in the project grid"),
-      image("/content/paparhoof/screens/contact-us.png", "Institutional system reference"),
+      image(placeholderThree, "DHCH placeholder project grid"),
+      image(placeholderOne, "DHCH placeholder system reference"),
     ],
     contentSections: [
       {
