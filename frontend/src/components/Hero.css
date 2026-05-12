@@ -96,12 +96,12 @@
 @media (max-width: 640px) {
   .home-hero-viewport {
     min-height: 60vh;
-    padding: 82px 20px 20px;
+    padding: 72px 20px 20px;
   }
 
   .hero-section {
     width: min(100%, calc(100vw - 40px));
-    margin-top: 76px;
+    margin-top: 74px;
     margin-bottom: 14px;
     max-height: 24vh;
   }
