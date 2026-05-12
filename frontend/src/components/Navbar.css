@@ -44,8 +44,8 @@
 }
 
 .navbar-wordmark {
-  width: clamp(190px, 18vw, 380px);
-  height: auto;
+  width: auto;
+  height: 40px;
 }
 
 .navbar-right {
@@ -106,6 +106,10 @@
     min-height: 44px;
     font-size: 1rem;
   }
+
+  .navbar-wordmark {
+    height: 36px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -116,7 +120,7 @@
   }
 
   .navbar-wordmark {
-    width: 160px;
+    height: 32px;
   }
 
   .brand-review-btn {

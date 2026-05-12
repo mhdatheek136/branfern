@@ -1,8 +1,23 @@
+.home-hero-viewport {
+  position: relative;
+  min-height: 100vh;
+  padding: 112px 48px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  background: #0D2E4A;
+}
+
 .hero-section {
   position: relative;
-  min-height: clamp(520px, 74vh, 980px);
-  margin-top: 112px;
-  background: var(--surface-deep-navy);
+  width: min(1200px, 100%);
+  max-height: min(54vh, 583px);
+  flex: 1 1 auto;
+  min-height: 0;
+  aspect-ratio: 1400 / 583;
+  margin: 110px auto 22px;
+  background: transparent;
   overflow: hidden;
 }
 
@@ -65,16 +80,30 @@
 }
 
 @media (max-width: 900px) {
+  .home-hero-viewport {
+    min-height: 70vh;
+    padding: 92px 32px 24px;
+  }
+
   .hero-section {
-    min-height: 460px;
-    margin-top: 92px;
+    width: min(100%, 90vw);
+    margin-top: 96px;
+    margin-bottom: 18px;
+    max-height: 34vh;
   }
 }
 
 @media (max-width: 640px) {
+  .home-hero-viewport {
+    min-height: 60vh;
+    padding: 82px 20px 20px;
+  }
+
   .hero-section {
-    min-height: 360px;
-    margin-top: 82px;
+    width: min(100%, calc(100vw - 40px));
+    margin-top: 76px;
+    margin-bottom: 14px;
+    max-height: 24vh;
   }
 
   .carousel-indicators {

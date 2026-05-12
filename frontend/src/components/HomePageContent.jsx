@@ -6,8 +6,10 @@ import RecentProjects from './RecentProjects';
 const HomePageContent = ({ slides, recentProjects }) => {
   return (
     <>
-      <Hero slides={slides} />
-      <ScrollIndicator />
+      <div className="home-hero-viewport">
+        <Hero slides={slides} />
+        <ScrollIndicator />
+      </div>
       <RecentProjects projects={recentProjects} />
     </>
   );

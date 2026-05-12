@@ -10,6 +10,12 @@
   transition: var(--transition-fast);
 }
 
+.home-hero-viewport .scroll-indicator {
+  flex: 0 0 auto;
+  padding: 0;
+  background: transparent;
+}
+
 .scroll-indicator:hover {
   transform: translateY(4px);
 }
@@ -18,6 +24,10 @@
   font-size: clamp(1.8rem, 2.6vw, 2.9rem);
   letter-spacing: -0.05em;
   color: var(--ink-horse-black);
+}
+
+.home-hero-viewport .scroll-text {
+  color: rgba(255, 253, 247, 0.86);
 }
 
 .scroll-arrow {

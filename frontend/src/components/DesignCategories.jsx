@@ -151,7 +151,7 @@ const DesignCategories = ({
           position === 'floating'
             ? getFloatingTop()
             : position === 'hero'
-              ? isMobile ? '20px' : '40px'
+              ? undefined
               : 'auto',
         position: position === 'floating' ? 'fixed' : 'absolute',
       }}
